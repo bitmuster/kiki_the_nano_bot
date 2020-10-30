@@ -15,6 +15,11 @@ Prerequisites
     
     The environment variable CXX should point to the location
     of the c++-compiler, e.g: /usr/bin/g++-3.2
+
+    Debian packages needed:
+      * libsdl-mixer1.2-dev
+      * libpython2.7-dev
+      * freeglut3-dev
   
   SDL libraries
 
@@ -77,9 +82,3 @@ Feedback
 
 Have fun,
 yours kodi
-
-    
-
-
-
-  
