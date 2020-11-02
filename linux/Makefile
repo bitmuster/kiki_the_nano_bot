@@ -50,7 +50,13 @@ KIKI_INCLUDES = -I ../SWIG $(KODILIBINC) \
 
 INCLUDES = $(KIKI_INCLUDES) $(X11_INCLUDES) $(PYTHON_INCLUDES)
 
-CXXFLAGS = -DDEBUG
+# Todo fix this:
+#
+#../src/../SWIG/KikiPy_wrap.cpp: In function ‘PyObject* _wrap_KikiText_getText(PyObject*, PyObject*)’:
+#../src/../SWIG/KikiPy_wrap.cpp:13436:63: error: taking address of temporary [-fpermissive]
+#   result = (std::string *) &((KikiText const *)arg1)->getText();
+CXXFLAGS = -DDEBUG -fpermissive
+
 CXXOPTS = $(INCLUDES) $(SDLCFLAGS) $(CXXFLAGS)
 
 src =  \
