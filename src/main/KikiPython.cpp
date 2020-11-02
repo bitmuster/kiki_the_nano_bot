@@ -121,7 +121,7 @@ void KikiPython::initPython ()
 
     std::string kikipy_path = kFileNativePath(Controller.getKikiHome() + "py/kiki.py");
     
-    init_kiki();
+    PyInit__kiki();
     
     FILE * pythonFile = fopen (kikipy_path.c_str(), "r");
     
