@@ -20553,7 +20553,7 @@ SWIG_init(void) {
   SWIG_Python_SetConstant(d, "KikiWorld_CAMERA_INSIDE",SWIG_From_int(static_cast< int >(KikiWorld::CAMERA_INSIDE)));
   SWIG_Python_SetConstant(d, "KikiWorld_CAMERA_BEHIND",SWIG_From_int(static_cast< int >(KikiWorld::CAMERA_BEHIND)));
   SWIG_Python_SetConstant(d, "KikiWorld_CAMERA_FOLLOW",SWIG_From_int(static_cast< int >(KikiWorld::CAMERA_FOLLOW)));
-  PyDict_SetItemString(md,(char *)"cvar", SWIG_globals());
+  PyDict_SetItemString(md,(char *)"kiki", SWIG_globals());
   SWIG_addvarlink(SWIG_globals(),(char *)"Controller",Swig_var_Controller_get, Swig_var_Controller_set);
   SWIG_Python_SetConstant(d, "KikiText_base_color",SWIG_From_int(static_cast< int >(KikiText::base_color)));
   SWIG_Python_SetConstant(d, "KikiText_bright_color",SWIG_From_int(static_cast< int >(KikiText::bright_color)));

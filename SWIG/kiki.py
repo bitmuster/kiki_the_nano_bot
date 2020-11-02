@@ -1225,7 +1225,7 @@ class KWindow(_object):
         return _kiki.KWindow_setPosition(self, arg2)
 KWindow_swigregister = _kiki.KWindow_swigregister
 KWindow_swigregister(KWindow)
-cvar = _kiki.cvar
+kiki = _kiki.kiki
 
 class KikiText(_object):
     __swig_setmethods__ = {}
