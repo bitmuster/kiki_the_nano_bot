@@ -6,7 +6,7 @@
 #
 
 X11_INCLUDES = -I /usr/X11/include/
-PYTHON_VERSION=2.7
+PYTHON_VERSION=3.7
 PYTHON_INCLUDES = -I /usr/include/python$(PYTHON_VERSION)
 
 SDLCFLAGS = $(shell sdl-config --cflags)
@@ -17,7 +17,7 @@ GLLIBS = -lglut -lGLU -lGL
 PYTHONHOME = /usr/lib/python$(PYTHON_VERSION)/
 PYTHONLIBS = \
 		-lutil \
-		/usr/lib/x86_64-linux-gnu/libpython2.7.so
+		/usr/lib/x86_64-linux-gnu/libpython3.7m.so
 
 #	     $(PYTHONHOME)/config/libpython$(PYTHON_VERSION).a
 #	     $(PYTHONHOME)/lib-dynload/math.so \
