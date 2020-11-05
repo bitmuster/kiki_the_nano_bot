@@ -28,11 +28,11 @@ class KikiConfig (ConfigParser):
                 
         for section in self.sections():
             for option in self.options (section):
-                self.apply (section, option, self.get (section, option))
+                self.apply (section, option, self.getit(section, option))
         
     def apply (self, section, option, value):
         """sets and applies value for option in section"""
-        self.set (section, option, value)
+        self.setit (section, option, value)
         if section == "sound":
             if option == "volume":
                 volume = int(int(value)*(128/9))
@@ -47,10 +47,10 @@ class KikiConfig (ConfigParser):
             elif option == "fullscreen":
                 fullscreen = self.getboolean(section, option)
                 if fullscreen != Controller.getFullscreen():
-                    screen_size = self.get (section, fullscreen and "fullscreen size" or "window size")
+                    screen_size = self.getit (section, fullscreen and "fullscreen size" or "window size")
                     screen_size = tuple (map (int, screen_size.split("x")))
                     Controller.changeScreenSize (screen_size[0], screen_size[1], self.getboolean(section, option))
-                    self.set (section, "fullscreen size", "%dx%d" % Controller.getScreenSize())
+                    self.setit (section, "fullscreen size", "%dx%d" % Controller.getScreenSize())
         elif section == "keyboard":
             player = Controller.getPlayer()
             player.setKeyForAction (value, option.replace("_", " "))
@@ -60,12 +60,12 @@ class KikiConfig (ConfigParser):
             elif option == "language":
                 Controller.language = value
         
-    def set (self, section, option, value):
-        """overwritten to allow spaces in option names"""        
+    def setit (self, section, option, value):
+        """do not override, we have a differing method signature"""
         ConfigParser.set (self, section, str(option).replace(" ", "_"), str(value))
             
-    def get (self, section, option):
-        """overwritten to allow spaces in option names"""
+    def getit(self, section, option):
+        """do not override, we have a differing method signature"""
         return ConfigParser.get (self, section, str(option).replace(" ", "_"))
 
     def save (self):
