@@ -117,6 +117,7 @@ void KikiPython::initPython ()
 	putenv (pypath.c_str());
 #endif
 
+    PyImport_AppendInittab("_kiki", &PyInit__kiki);
     Py_Initialize();
 
     std::string kikipy_path = kFileNativePath(Controller.getKikiHome() + "py/kiki.py");
