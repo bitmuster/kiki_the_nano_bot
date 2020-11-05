@@ -40,7 +40,7 @@ def decenter (self, *args):
     elif len(args) == 1:
         x, y, z = args[0]
 
-    return KikiPos(x+s.x/2, y+s.y/2, z+s.z/2)
+    return KikiPos(int(x+s.x/2), int(y+s.y/2), int(z+s.z/2))
 
 KikiWorld.decenter = decenter
 del decenter
@@ -114,7 +114,7 @@ del setObjectRandom
 
 class KikiPyWorld (KikiPyActionObject):
     """class for creating worlds from dictionaries"""
-    
+
     # ................................................................ init
     def __init__ (self):
         """initializes a KikiPyWorld object"""
@@ -125,6 +125,10 @@ class KikiPyWorld (KikiPyActionObject):
     def create (self, world_dict = {}):
         """creates the world from a level name or a dictionary"""
 
+        print ("world dict ", world_dict)
+        #print (level_dict)
+        #print (level_dict["sandbox"])
+
         if world_dict:
             if type (world_dict) == bytes:
                 world.level_index = level_list.index (world_dict)
@@ -132,11 +136,19 @@ class KikiPyWorld (KikiPyActionObject):
                 self.dict = level_dict[world_dict]
             else:
                 self.dict = world_dict
-            
+
         # ............................................................ appearance
-        x, y, z = self.dict["size"]        
+
+        #hack: something is going wrong
+        self.dict = level_dict["sandbox"]
+        world.level_name = "sandbox"
+
+        print(self.dict)
+        print("self.dict: ", self.dict)
+        print("self.dict[size]: ", self.dict["size"])
+        x, y, z = self.dict["size"]
         world.setSize (x, y, z)
-        
+
         if "scheme" in self.dict:
             applyColorScheme (eval(self.dict["scheme"]))
         else:
@@ -145,7 +157,7 @@ class KikiPyWorld (KikiPyActionObject):
         if "border" in self.dict:
             border = self.dict["border"]
         else:
-            border = 1
+            border = True
 
         world.setDisplayBorder (border)
 
@@ -174,7 +186,7 @@ class KikiPyWorld (KikiPyActionObject):
         if "exits" in self.dict:
             exit_id = 0
             for entry in self.dict["exits"]:
-                exit_gate = KikiGate (entry["active"])
+                exit_gate = KikiGate ( entry["active"] == True)
                 
                 if "name" in entry:
                     name = entry["name"]
@@ -230,7 +242,9 @@ class KikiPyWorld (KikiPyActionObject):
         
         world.getProjection().setPosition (KVector())
 
-        Controller.player.getStatus().setMinMoves (highscore.levelParMoves (world.level_name))
+        score = highscore.levelParMoves (world.level_name)
+        print(score)
+        Controller.player.getStatus().setMinMoves (score)
         Controller.player.getStatus().setMoves (0)
 
         # ............................................................ init
