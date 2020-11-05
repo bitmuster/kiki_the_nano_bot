@@ -1,5 +1,5 @@
 
-if Controller.isDebugVersion(): print "[highscore.py]"
+if Controller.isDebugVersion(): print("[highscore.py]")
 
 # .................................................................................................................
 #                                               KIKI HIGHSCORE
@@ -25,7 +25,7 @@ class KikiHighscore (ConfigParser):
         try:
             self.read (self.highscore_file_path)
         except:
-            print ("creating " + self.highscore_file_path)
+            print(("creating " + self.highscore_file_path))
             
         self.save ()
 

@@ -1,16 +1,16 @@
 # -*- encoding: utf-8 -*-
 
-if Controller.isDebugVersion(): print "[lang.py]"
+if Controller.isDebugVersion(): print("[lang.py]")
 
 Controller.language = "english"
 
 lang_list = [  "dutch", "english", "euskara", "francaise", "german",  "portuguese", "spanish", "swedish", ]
 lang = {}
 for langName in lang_list:
-    execfile (kikipy_path + os.path.sep + "lang" + os.path.sep + langName + ".py")
+    exec(compile(open(kikipy_path + os.path.sep + "lang" + os.path.sep + langName + ".py", "rb").read(), kikipy_path + os.path.sep + "lang" + os.path.sep + langName + ".py", 'exec'))
 
 def getLocalizedString(text):
-  if lang[Controller.language].has_key(text):
+  if text in lang[Controller.language]:
     return lang[Controller.language][text]
   else:
     return text

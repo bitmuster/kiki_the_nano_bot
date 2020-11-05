@@ -1,4 +1,4 @@
-from __future__ import nested_scopes
+
 
 # .................................................................................................................
 #................................ imports
@@ -34,7 +34,7 @@ def help (request):
 
 def dirn (arg):
     """prints the result of a dir(arg) call in seperate lines"""
-    print "\n".join(dir(arg))
+    print("\n".join(dir(arg)))
     
 # .................................................................................................................
 # ............................... shortcuts
@@ -69,4 +69,4 @@ rotx90  = KQuaternion.rotationAroundVector(90,  KVector(1,0,0))
 # .................................................................................................................
 # ............................... load files
 
-execfile(kikipy_path + "world.py")
+exec(compile(open(kikipy_path + "world.py", "rb").read(), kikipy_path + "world.py", 'exec'))

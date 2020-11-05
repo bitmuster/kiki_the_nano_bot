@@ -1,9 +1,9 @@
 
-if Controller.isDebugVersion(): print "[edit.py]"
+if Controller.isDebugVersion(): print("[edit.py]")
 
-execfile (kikipy_path + "buffer.py")
-execfile (kikipy_path + "interpreter.py")
-execfile (kikipy_path + "file.py")
+exec(compile(open(kikipy_path + "buffer.py", "rb").read(), kikipy_path + "buffer.py", 'exec'))
+exec(compile(open(kikipy_path + "interpreter.py", "rb").read(), kikipy_path + "interpreter.py", 'exec'))
+exec(compile(open(kikipy_path + "file.py", "rb").read(), kikipy_path + "file.py", 'exec'))
 
 # .................................................................................................................
 #                                                   PythonConsole
@@ -259,7 +259,7 @@ class PythonConsole:
         # ................................................... extract mod- and key name
         modName = ""
         keyName = key
-        if key.find("_") <> -1:
+        if key.find("_") != -1:
             modName = key.split("_")[0]
             keyName = key.split("_")[1]
 

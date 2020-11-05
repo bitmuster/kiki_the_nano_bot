@@ -1,5 +1,5 @@
 
-if Controller.isDebugVersion(): print "[file.py]"
+if Controller.isDebugVersion(): print("[file.py]")
 
 # .................................................................................................................
 #                                                      KikiPyFile
@@ -31,7 +31,7 @@ class KikiPyFile (KikiPyBuffer):
                 file = open (file_path + ".py", "r")
                 self.file_path = file_path + ".py"
             except:
-                print "[*** Error ***] unable to open file", file_path
+                print("[*** Error ***] unable to open file", file_path)
                 self.editor.setStatus("file error")
                 return 0
     
@@ -73,7 +73,7 @@ class KikiPyFile (KikiPyBuffer):
         try:
             file = open (file_path, "w")
         except:
-            print "[*** Error ***] unable to open file for writing ", file_path
+            print("[*** Error ***] unable to open file for writing ", file_path)
             self.editor.setStatus("file error")
             return 0
         

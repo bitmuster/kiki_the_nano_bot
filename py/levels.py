@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 
-if Controller.isDebugVersion(): print "[levels.py]"
+if Controller.isDebugVersion(): print("[levels.py]")
 
 # .................................................................................................................
 
@@ -49,5 +49,5 @@ def outro (index=0):
                
 # import the levels
 for levelName in level_list:
-    execfile (kikipy_path + os.path.sep + "levels" + os.path.sep + levelName + ".py")
+    exec(compile(open(kikipy_path + os.path.sep + "levels" + os.path.sep + levelName + ".py", "rb").read(), kikipy_path + os.path.sep + "levels" + os.path.sep + levelName + ".py", 'exec'))
             

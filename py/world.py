@@ -1,12 +1,12 @@
 
-if Controller.isDebugVersion(): print "[world.py]"
+if Controller.isDebugVersion(): print("[world.py]")
 
 import random
 import types
 
-execfile(kikipy_path + "colors.py")
-execfile(kikipy_path + "action.py")
-execfile(kikipy_path + "lang.py")
+exec(compile(open(kikipy_path + "colors.py", "rb").read(), kikipy_path + "colors.py", 'exec'))
+exec(compile(open(kikipy_path + "action.py", "rb").read(), kikipy_path + "action.py", 'exec'))
+exec(compile(open(kikipy_path + "lang.py", "rb").read(), kikipy_path + "lang.py", 'exec'))
 
 # .................................................................................................................
 #                                           KikiWorld Extensions
@@ -55,13 +55,13 @@ def addObjectLine (self, object, start, end):
         end = (end.x, end.y, end.z)
     ex, ey, ez = end
     
-    diff = map (lambda a,b: a-b, end, start)
-    maxdiff = max(map (abs, diff))
-    deltas = map (lambda a, d = float (maxdiff): a/d, diff)
+    diff = list(map (lambda a,b: a-b, end, start))
+    maxdiff = max(list(map (abs, diff)))
+    deltas = list(map (lambda a, d = float (maxdiff): a/d, diff))
     for i in range (maxdiff):
-        pos = apply (KikiPos, (map (lambda a, b: int(a+i*b), start, deltas)))
+        pos = KikiPos(*(list(map (lambda a, b: int(a+i*b), start, deltas))))
         if self.isUnoccupiedPos (pos):
-            if type(object) == types.StringType:
+            if type(object) == bytes:
                 self.addObjectAtPos (eval(object), pos)
             else:
                 self.addObjectAtPos (object(), pos)
@@ -84,7 +84,7 @@ del addObjectPoly
 def addObjectRandom (self, object, number):
     """adds number objects of type at random positions to the world"""
     for i in range (number):
-        if type (object) == types.StringType:
+        if type (object) == bytes:
             self.setObjectRandom (eval(object))
         else:
             self.setObjectRandom (object())
@@ -126,7 +126,7 @@ class KikiPyWorld (KikiPyActionObject):
         """creates the world from a level name or a dictionary"""
 
         if world_dict:
-            if type (world_dict) == types.StringType:
+            if type (world_dict) == bytes:
                 world.level_index = level_list.index (world_dict)
                 world.level_name = world_dict
                 self.dict = level_dict[world_dict]
@@ -188,7 +188,7 @@ class KikiPyWorld (KikiPyActionObject):
                 if "position" in entry:
                     pos = world.decenter (entry["position"])
                 elif "coordinates" in entry:
-                    pos = apply (KikiPos, entry["coordinates"])
+                    pos = KikiPos(*entry["coordinates"])
                 world.addObjectAtPos (exit_gate, pos)
                 exit_id += 1
 
@@ -198,7 +198,7 @@ class KikiPyWorld (KikiPyActionObject):
             if callable(self.dict["create"]):
                 self.dict["create"]()
             else:
-                exec self.dict["create"] in globals()
+                exec(self.dict["create"], globals())
 
         # ............................................................ player
 
@@ -280,7 +280,7 @@ class KikiPyWorld (KikiPyActionObject):
                 elif callable (w):
                     w()
                 else:
-                    exec "KikiPyWorld().create(" + world + ")"
+                    exec("KikiPyWorld().create(" + world + ")")
             else:
                 KikiPyWorld().create (level_list[world.level_index+1])
                 
@@ -319,7 +319,7 @@ class KikiPyWorld (KikiPyActionObject):
             if callable(self.dict["escape"]):
                 self.dict["escape"]()
             else:
-                exec self.dict["escape"] in globals()
+                exec(self.dict["escape"], globals())
             return
 
         menu = KikiMenu()
@@ -339,9 +339,9 @@ class KikiPyWorld (KikiPyActionObject):
         menu.addItem (Controller.getLocalizedString ("quit"), once (Controller.quit))
      
 # .................................................................................................................
-execfile (kikipy_path + "config.py")
-execfile (kikipy_path + "setup.py")
-execfile (kikipy_path + "levels.py")
-execfile (kikipy_path + "levelselection.py")
-execfile (kikipy_path + "highscore.py")
-execfile (kikipy_path + "intro.py")
+exec(compile(open(kikipy_path + "config.py", "rb").read(), kikipy_path + "config.py", 'exec'))
+exec(compile(open(kikipy_path + "setup.py", "rb").read(), kikipy_path + "setup.py", 'exec'))
+exec(compile(open(kikipy_path + "levels.py", "rb").read(), kikipy_path + "levels.py", 'exec'))
+exec(compile(open(kikipy_path + "levelselection.py", "rb").read(), kikipy_path + "levelselection.py", 'exec'))
+exec(compile(open(kikipy_path + "highscore.py", "rb").read(), kikipy_path + "highscore.py", 'exec'))
+exec(compile(open(kikipy_path + "intro.py", "rb").read(), kikipy_path + "intro.py", 'exec'))
