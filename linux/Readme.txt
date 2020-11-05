@@ -20,7 +20,11 @@ Prerequisites
       * libsdl-mixer1.2-dev
       * libpython2.7-dev
       * freeglut3-dev
-  
+
+    On debian bullseye:
+
+    $ apt-get install libsdl-mixer1.2-dev libpython3.8-dev freeglut3-dev libsdl-image1.2-dev
+
   SDL libraries
 
     SDL             http://www.libsdl.org
