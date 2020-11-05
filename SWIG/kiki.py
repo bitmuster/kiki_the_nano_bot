@@ -480,12 +480,6 @@ class KikiPyAction(KikiAction):
             self.this = this
     __swig_destroy__ = _kiki.delete_KikiPyAction
     __del__ = lambda self: None
-
-
-    def __init__(self,*args):
-        self.this = apply (_kiki.new_KikiPyAction, (self,) + args)
-        self.thisown = 1
-
 KikiPyAction_swigregister = _kiki.KikiPyAction_swigregister
 KikiPyAction_swigregister(KikiPyAction)
 

@@ -473,19 +473,14 @@ class KikiPyAction(KikiAction):
     __repr__ = _swig_repr
 
     def __init__(self, *args):
-        this = _kiki.new_KikiPyAction(*args)
+        print("Args", args)
+        this = _kiki.new_KikiPyAction( self, *args)
         try:
             self.this.append(this)
         except __builtin__.Exception:
             self.this = this
     __swig_destroy__ = _kiki.delete_KikiPyAction
     __del__ = lambda self: None
-
-
-    def __init__(self,*args):
-        self.this = apply (_kiki.new_KikiPyAction, (self,) + args)
-        self.thisown = 1
-
 KikiPyAction_swigregister = _kiki.KikiPyAction_swigregister
 KikiPyAction_swigregister(KikiPyAction)
 
